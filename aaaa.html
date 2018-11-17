@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>jQuery/$工厂函数</h1>
+  <button id="btn1">click me(0)</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //查找触发事件的元素
+    //创建jq对象，并查找到#btn1元素，封装进$btn1中
+    var $btn1=$("#btn1");
+    //绑定处理函数
+    //调用jq的简化版API on未$btn1中的按钮绑定事件
+    $btn1.on("click",function(){
+      //查找要修改的元素
+      //this->当前按钮->DOM元素->不能用jq API
+      //$(this)，创建jq对象重新封装this为jq对象
+      var $btn=$(this);
+      //修改元素
+      //$btn.html() ->jq映射为-> btn.innerHTML
+      var n=parseInt($btn.html().slice(9));
+      n++;
+      $btn.html(`click me(${n})`);
+    })
+  </script>
+</body>
+</html>
